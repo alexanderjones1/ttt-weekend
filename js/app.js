@@ -24,7 +24,7 @@ console.log(message);
 init()
 function init() {
     board = [null, null, null, null, null, null, null, null, null, ]
-    element = -1
+    turn = 1
     winner = false
     tie = false
     render()
@@ -47,12 +47,14 @@ function updateBoard() {
     })
 }
 
-// function updateMessage() {
-//     if (winner === false && tie === false) {
-//         messageEl.textContent =
-//     } else if (winner === false && tie === true) {
-//         messageEl.textContent = "You Tied!"
-//     } else {
-//         messageEl.textContent = " Congratulations! You Win!"
-//     }
-// }
+function updateMessage() {
+    if (winner === false && tie === false) {
+        messageEl.textContent = (turn === 1 ? 'Player X turn.' : 'Player O turn')
+        console.log(messageEl);
+    } else if (winner === false && tie === true) {
+        messageEl.textContent = "You Tied!"
+    } else {
+        messageEl.textContent = " Congratulations! You Win!"
+    }
+}
+
