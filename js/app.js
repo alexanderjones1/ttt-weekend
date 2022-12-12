@@ -20,11 +20,14 @@ let board, element, winner, tie
 const squareEls = document.querySelectorAll('.sqr')
 
 const messageEl = document.getElementById('message')
-console.log(message);
+
+const resetBtnEl = document.getElementById('reset')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
 document.querySelector('.board').addEventListener('click', handleClick)
+
+resetBtnEl.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -56,11 +59,11 @@ function updateBoard() {
 
 function updateMessage() {
     if (winner === false && tie === false) {
-        messageEl.textContent = (turn === 1 ? 'Player X turn.' : 'Player O turn')
+        messageEl.textContent = (turn === 1 ? 'Player X turn.' : 'Player O turn.')
     } else if (winner === false && tie === true) {
         messageEl.textContent = "You Tied!"
     } else {
-        messageEl.textContent = " Congratulations! You Win!"
+        messageEl.textContent = (turn === 1 ? 'Player X Wins!' : 'Player O Wins!')
     }
 }
 
@@ -73,9 +76,9 @@ function handleClick(evt) {
 
     placePiece(sqIdx)
     checkForTie()
-    // checkForWinner()
-    // switchPlayerTurn()
-    // render()
+    checkForWinner()
+    switchPlayerTurn()
+    render()
 }
 
 function placePiece(idx) {
@@ -90,4 +93,25 @@ function checkForTie() {
             tie = true
         }
     })
+}
+
+function checkForWinner() {
+    winningCombos.forEach(function(arr) {
+        let sum = 0
+        arr.forEach(function(idx) {
+            sum += board[idx]
+        })
+        if (sum === 3 || sum === -3) {
+            console.log("we got a winner");
+            winner = true
+        }
+    })
+}
+
+function switchPlayerTurn() {
+    if (winner === true) {
+        return
+    } else {
+        turn = turn * -1
+    }
 }
