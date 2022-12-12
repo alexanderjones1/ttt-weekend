@@ -70,6 +70,7 @@ function updateMessage() {
 function handleClick(evt) {
     let sqIdx = +evt.target.id.replace('sq', '')
     if (board[sqIdx] !== null) {
+        return
     } else if (winner === true) {
         return
     }
