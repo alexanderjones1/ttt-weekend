@@ -17,8 +17,6 @@ let board, element, winner, tie
 
 /*------------------------ Cached Element References ------------------------*/
 
-// // Step 2 - Store cached element references.
-
 const squareEls = document.querySelectorAll('.sqr')
 
 const messageEl = document.getElementById('message')
@@ -26,9 +24,9 @@ console.log(message);
 
 /*----------------------------- Event Listeners -----------------------------*/
 
+document.querySelector('.board').addEventListener('click', handleClick)
 
 /*-------------------------------- Functions --------------------------------*/
-
 
 init()
 function init() {
@@ -66,5 +64,11 @@ function updateMessage() {
     }
 }
 
-
+function handleClick(evt) {
+    const sqIdx = evt.target.id.replace('sq', '')
+    console.log(sqIdx);
+    // if (board[sqIdx].innerHTML !== null) {
+    //     return
+    // }
+}
 
