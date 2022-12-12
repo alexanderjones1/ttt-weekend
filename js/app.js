@@ -13,7 +13,7 @@ const winningCombos = [
 
 /*---------------------------- Variables (state) ----------------------------*/
 
-let board, element, winner, tie
+let board, turn, winner, tie
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -87,13 +87,15 @@ function placePiece(idx) {
 }
 
 function checkForTie() {
-    const hasNull = board.some(function(element) {
-        if (element === null) {
-            tie = false
-        } else {
-            tie = true
-        }
-    })
+    if (board.includes(null)) return
+    tie = true
+    // const hasNull = board.some(function(element) {
+    //     if (element === null) {
+    //         tie = false
+    //     } else {
+    //         tie = true
+    //     }
+    // })
 }
 
 function checkForWinner() {
