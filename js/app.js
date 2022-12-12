@@ -65,10 +65,29 @@ function updateMessage() {
 }
 
 function handleClick(evt) {
-    const sqIdx = evt.target.id.replace('sq', '')
-    console.log(sqIdx);
-    // if (board[sqIdx].innerHTML !== null) {
-    //     return
-    // }
+    let sqIdx = +evt.target.id.replace('sq', '')
+    if (board[sqIdx] !== null) {
+    } else if (winner === true) {
+        return
+    }
+
+    placePiece(sqIdx)
+    checkForTie()
+    // checkForWinner()
+    // switchPlayerTurn()
+    // render()
 }
 
+function placePiece(idx) {
+    board[idx] = turn
+}
+
+function checkForTie() {
+    const hasNull = board.some(function(element) {
+        if (element === null) {
+            tie = false
+        } else {
+            tie = true
+        }
+    })
+}
