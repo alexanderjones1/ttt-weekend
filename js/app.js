@@ -105,16 +105,17 @@ function checkForWinner() {
             sum += board[idx]
         })
         if (sum === 3 || sum === -3) {
-            console.log("we got a winner");
+            // console.log("we got a winner");
             winner = true
         }
     })
 }
 
 function switchPlayerTurn() {
-    if (winner === true) {
-        return
-    } else {
-        turn = turn * -1
-    }
+    if (!winner) turn *= -1
+    // if (winner === true) {
+    //     return
+    // } else {
+    //     turn = turn * -1
+    // }
 }
